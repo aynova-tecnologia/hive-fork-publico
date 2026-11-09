@@ -6,7 +6,10 @@ import 'package:hive/src/box/keystore.dart';
 
 export 'package:hive/src/backend/stub/backend_manager.dart'
     if (dart.library.io) 'package:hive/src/backend/vm/backend_manager.dart'
-    if (dart.library.html) 'package:hive/src/backend/js/backend_manager.dart';
+    if (dart.library.html) 'package:hive/src/backend/js/backend_manager.dart'
+    // [fork aynova] WebAssembly: sem dart:html, usa o backend em package:web.
+    // Vem depois do html: o dart2js segue no backend original.
+    if (dart.library.js_interop) 'package:hive/src/backend/js_web/backend_manager.dart';
 
 /// Abstract storage backend
 abstract class StorageBackend {
